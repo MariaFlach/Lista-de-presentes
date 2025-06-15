@@ -1,0 +1,60 @@
+#LISTA DOS PRESENTES
+confirmacao = 1
+while confirmacao != 0:
+    N = int(input("Escreva a quantidade de itens desejados: "))
+    confirmacao = int(input("CONFIRMANDO: a quantidade de itens desejados é " + str(N) + "? Se SIM, digite 0 e, se NÃO, digite 1: "))
+presentes = {}
+for i in range (1, N+1):
+    presente = input("Escreva o item da lista de presentes: ")
+    presentes.append(presente)
+print(presentes)
+#PRODUTOS DE CADA LOJA
+loja1 = {
+    'cadeira', 'cafeteira', 'caneca', 'escumadeira', 'estante',
+    'frigideira', 'funil', 'liquidificador', 'notebook', 'panela',
+    'playstation', 'smartphone', 'teclado', 'televisão'}
+loja2 = {
+    'cafeteira', 'escumadeira', 'espanador', 'frigideira', 'funil',
+    'halter', 'peneira', 'playstation', 'sofá', 'tablet', 'televisão',
+    'vassoura', 'webcam', 'xbox'}
+loja3 = {
+    'caneca', 'escumadeira', 'espanador', 'espátula', 'estante',
+    'frigideira', 'halter', 'playstation', 'rádio', 'smartphone',
+    'sofá', 'teclado', 'televisão', 'vassoura', 'xbox'}
+loja4 = {
+    'caneca', 'escumadeira', 'espanador', 'espátula', 'estante',
+    'frigideira', 'halter', 'playstation', 'rádio', 'smartphone',
+    'sofá', 'teclado', 'televisão', 'vassoura', 'xbox'}
+#Q1
+disponiveis = loja1.union(loja2, loja3, loja4)
+print("Todos os produtos disponíveis em pelo menos uma loja: " + str(disponiveis))
+#Q2
+comuns = loja1.intersection(loja2, loja3, loja4)
+print("Os produtos existentes em todas as lojas: " + str(comuns))
+#Q3
+indisponiveis = presentes.difference(disponiveis)
+print("Produtos não encontrados: " + str(indisponiveis))
+#Q4
+exclusivos = []
+exclusivo = loja1.difference(loja2, loja3, loja4)
+exclusivos.append(exclusivo)
+exclusivo = loja2.difference(loja1, loja3, loja4)
+exclusivos.append(exclusivo)
+exclusivo = loja3.difference(loja1, loja2, loja4)
+exclusivos.append(exclusivo)
+exclusivo = loja4.difference(loja1, loja2, loja3)
+exclusivos.append(exclusivo)
+print("Produtos exclusivos: " + str(exclusivos))
+#Q5
+conjuntos = []
+conjuntos.append(len(loja1.union(loja2)))
+conjuntos.append(len(loja1.union(loja3)))
+conjuntos.append(len(loja1.union(loja4)))
+conjuntos.append(len(loja2.union(loja3)))
+conjuntos.append(len(loja2.union(loja4)))
+conjuntos.append(len(loja3.union(loja4)))
+maior = conjuntos[0]
+for i in range(1, len(conjuntos)):
+    if conjuntos[i] > maior:
+        maior = conjuntos[i]
+print("Melhor dupla tem "+ str(maior) + " itens")
